@@ -44,7 +44,7 @@ export default {
     showTime(){ 
       var date  = new Date()
       this.flushDate()
-      return  date.getHours() +(this.isFlash ? ":" :" ")+ date.getMinutes()
+      return  date.getHours() +(this.isFlash ? ":" :" ")+ (date.getMinutes()<10?'0':'')+date.getMinutes()
     }
   } ,
   created (){
