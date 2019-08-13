@@ -27,7 +27,7 @@ export default {
     },
     flushDate(){
           var date = new Date()
-          var str = 'xxxx年xx月xx日 '
+          var str = ''
         	var year= date.getFullYear();
         	var month=date.getMonth()+1;
           var day=date.getDate();

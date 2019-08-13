@@ -1,15 +1,18 @@
 <template>
    <div class="desktop-container" @contextmenu.prevent="showmenu">
      <taskbar></taskbar>
+    <date-time></date-time>
    </div>
 </template>
 
 <script>
 import Taskbar from "../components/Taskbar"
+import DateTime from "../components/DateTime"
 export default {
   name: 'desktop',
   components: {
-    Taskbar
+    Taskbar,
+    DateTime
   },
   methods:{
     showmenu(){
