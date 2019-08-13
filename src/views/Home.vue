@@ -1,14 +1,15 @@
 <template>
    <div class="desktop-container" @contextmenu.prevent="showmenu">
-
+     <taskbar></taskbar>
    </div>
 </template>
 
 <script>
-
+import Taskbar from "../components/Taskbar"
 export default {
   name: 'desktop',
   components: {
+    Taskbar
   },
   methods:{
     showmenu(){
