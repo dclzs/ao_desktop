@@ -46,7 +46,7 @@ export default {
       this.flushDate()
       return  date.getHours() +(this.isFlash ? ":" :" ")+ (date.getMinutes()<10?'0':'')+date.getMinutes()
     }
-  } ,
+  },
   created (){
     setInterval(()=>{
       this.isFlash=!this.isFlash
@@ -65,6 +65,7 @@ export default {
   color:#fff
   text-align:center
   letter-spacing:.05rem
+  width:6rem
   user-select: none
   .time
     font-size:1.2rem

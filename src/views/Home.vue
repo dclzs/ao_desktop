@@ -2,17 +2,20 @@
    <div class="desktop-container" @contextmenu.prevent="showmenu">
      <taskbar></taskbar>
     <date-time></date-time>
+    <application-set></application-set>
    </div>
 </template>
 
 <script>
 import Taskbar from "../components/Taskbar"
 import DateTime from "../components/DateTime"
+import ApplicationSet from "../components/ApplicationSet"
 export default {
   name: 'desktop',
   components: {
     Taskbar,
-    DateTime
+    DateTime,
+    ApplicationSet
   },
   methods:{
     showmenu(){
