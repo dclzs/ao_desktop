@@ -2,7 +2,7 @@
     "ret":true,
     "applicationset":[{
         "id": "0001",
-        "imgUrl": "/images/icons/img1.png"
+        "imgUrl": "/images/icons/chess-icon.jpg"
       }, {
         "id": "0002",
         "imgUrl": "/images/icons/img2.png"
