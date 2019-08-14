@@ -1,0 +1,31 @@
+{
+    "ret":true,
+    "applicationset":[{
+        "id": "0001",
+        "imgUrl": "/images/icons/img1.png"
+      }, {
+        "id": "0002",
+        "imgUrl": "/images/icons/img2.png"
+      }, {
+        "id": "0003",
+        "imgUrl": "/images/icons/img3.png"
+      },{
+        "id": "0004",
+        "imgUrl": "/images/icons/img4.png"
+      }, {
+        "id": "0005",
+        "imgUrl": "/images/icons/img5.png"
+      }, {
+        "id": "0006",
+        "imgUrl": "/images/icons/img6.png"
+      },{
+        "id": "0007",
+        "imgUrl": "/images/icons/img1.png"
+      }, {
+        "id": "0008",
+        "imgUrl": "/images/icons/img2.png"
+      }, {
+        "id": "0009",
+        "imgUrl": "/images/icons/img3.png"
+      } ]
+}

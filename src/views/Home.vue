@@ -1,8 +1,8 @@
 <template>
    <div class="desktop-container" @contextmenu.prevent="showmenu">
      <taskbar></taskbar>
-    <date-time></date-time>
-    <application-set></application-set>
+     <date-time></date-time>
+    <application-set :icons="icons"></application-set>
    </div>
 </template>
 
@@ -10,8 +10,16 @@
 import Taskbar from "../components/Taskbar"
 import DateTime from "../components/DateTime"
 import ApplicationSet from "../components/ApplicationSet"
+import axios from 'axios'
+
 export default {
   name: 'desktop',
+  data (){
+    return {
+      icons:[]
+    }
+  }
+  ,
   components: {
     Taskbar,
     DateTime,
@@ -20,7 +28,17 @@ export default {
   methods:{
     showmenu(){
       alert("显示右键菜单组件");
+    },
+    getIcon(data){
+        data = data.data
+        if(data.ret){
+          this.icons = data.applicationset
+          console.log(this.icons)
+        }
     }
+  },
+  created (){
+    axios.get("/api/icons/index.json").then(this.getIcon)
   }
 }
 </script>
