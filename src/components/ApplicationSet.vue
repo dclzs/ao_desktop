@@ -50,7 +50,7 @@ export default {
 	width:$iconListWidth
 	height:$IconListHeght
 	position:fixed
-	bottom:5rem
+	top:60%
 	left:0
 	right:0
 	margin:0 auto
