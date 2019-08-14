@@ -1,15 +1,18 @@
 <template>
    <div class="desktop-container" @contextmenu.prevent="showmenu">
-     <taskbar></taskbar>
+     <task-bar></task-bar>
      <date-time></date-time>
-    <application-set :icons="icons"></application-set>
+     <application-set :icons="icons"></application-set>
+      <chess></chess>
    </div>
 </template>
 
 <script>
-import Taskbar from "../components/Taskbar"
-import DateTime from "../components/DateTime"
-import ApplicationSet from "../components/ApplicationSet"
+import DateTime from "common/DateTime"
+import ApplicationSet from "common/ApplicationSet"
+import TaskBar from "common/TaskBar"
+import Chess from "applications/ChessGame/Chess"
+
 import axios from 'axios'
 
 export default {
@@ -21,9 +24,10 @@ export default {
   }
   ,
   components: {
-    Taskbar,
+    TaskBar,
     DateTime,
-    ApplicationSet
+    ApplicationSet,
+    Chess
   },
   methods:{
     showmenu(){

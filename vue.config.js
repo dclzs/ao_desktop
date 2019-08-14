@@ -38,10 +38,11 @@ module.exports = {
   configureWebpack: {
      resolve: {
       alias: {
-        'assets': '@/assets',
-        'components': '@/components',
+        'assets': '@/assets',     
         'views': '@/views',
-        'styles':"@/assets/styles"
+        'styles':"@/assets/styles",
+        'applications':'@/components/applications',
+        'common':'@/components/common'
       }
     }
   },
