@@ -1,13 +1,13 @@
 <template>
-    <div class="title-bar">
+    <div class="title-bar" >
       <div class="icon"><img :src="titleBarOptions.iconUrl"  /></div> <!-- icon -->
 				<div class="menu-title">
 					<div class="menu" v-if="Object.keys(this.titleBarOptions.menu).length" ></div>   
 					<div class="title">{{titleBarOptions.title}}</div>
 				</div>
-			<div class="status" :style="{'min-width':statusWidth}" ref="status">
+			<div class="status" :style="{'min-width':statusWidth}" >
 				<div class="status-item" @click="windowToMin" v-if="getStatusButton.min"><div class="iconfont">&#xe625;</div></div>
-				<div class="status-item" @click="windowToMax" v-if="getStatusButton.max"><div class="iconfont" v-html="windowMaxIcon"></div></div>
+				<div class="status-item" @click="windowChangeSize" v-if="getStatusButton.max"><div class="iconfont" v-html="windowMaxIcon"></div></div>
 				<div class="status-item close-window" @click="windowClose" v-if="getStatusButton.closeBut"> <div class="iconfont">&#xe614;</div></div>
 			</div> <!-- status -->
     </div>
@@ -18,6 +18,23 @@ export default {
 		props:{
 			titleBarOptions:Object			 
 		},
+		data (){
+			return {
+				parentWidth:0,
+				parentHeight:0,
+				parentLeft:0,
+				parentTop:0,
+				parentHeight:0,
+				parentWidth:0
+			}
+		},
+		mounted (){
+			this.parentLeft=this.$parent.$el.offsetLeft
+			this.parentTop=this.$parent.$el.offsetTop
+			this.parentWidth =this.$parent.$el.offsetWidth
+			this.parentHeight =this.$parent.$el.offsetHeight
+			this.$parent.$el.style.transition="width 0.2s , height 0.2s"
+		},
 		data(){
 			return {
 				isMax:false,
@@ -25,15 +42,30 @@ export default {
 			}
 		} ,
 		methods:{
-			windowToMax(){
-				this.isMax = !this.isMax
-				alert('窗口最大化 向父组件传值')
+			windowPosition(left,top){
+				this.$parent.$el.style.left=left+'px'
+				this.$parent.$el.style.top=top+'px'
+			} ,
+			windowSize(w,h){
+				this.$parent.$el.style.width=  w +'px'
+			 	this.$parent.$el.style.height= h + 'px'
 			},
+			windowChangeSize(){
+						
+				this.isMax = !this.isMax
+				if(this.isMax){
+						this.windowPosition(0,0)
+						this.windowSize(this.$store.state.screenWidth,this.$store.state.screenHeight)
+				}else{
+						this.windowPosition(this.parentLeft,this.parentTop)
+						this.windowSize(this.parentWidth,this.parentHeight)
+				}
+			} ,
 			windowToMin(){
-				alert('窗口最小化 向父组件传值')
+				 this.$parent.$el.style.display="none"
 			},
 			windowClose(){
-				alert('关闭窗口 像父组件传值')
+				 this.$parent.$el.style.display="none"
 			}
 		},
 		computed:{
@@ -45,8 +77,8 @@ export default {
 					const retBut= { min : buts.minButton && true ,max : buts.maxButton && true, closeBut : buts.closeButton && true}
 					this.statusWidth = Object.values(retBut).filter(item => item).length + "rem"
 				  return retBut
-			}
-		}
+			} 
+		} 
 }
 </script>
 

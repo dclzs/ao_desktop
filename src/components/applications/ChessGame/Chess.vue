@@ -1,6 +1,6 @@
 <template>
-  <div class="chess" ref='chess'>
-    <title-bar :titleBarOptions='titleBarOptions'></title-bar>
+  <div class="chess" >
+    <title-bar :titleBarOptions='titleBarOptions' ></title-bar>
   </div>
 </template>
 
@@ -11,7 +11,6 @@ export default  {
   data(){
     return {
        titleBarOptions:{
-         windowsName:'chess',  //必填
          title:'Ao-Desktop原创__中国象棋', //默认值‘’
          menu:{}, //默认值 {}
          iconUrl:'/images/icons/chess-icon.jpg', //默认值 ‘’
@@ -23,7 +22,11 @@ export default  {
   },
   components:{
     TitleBar
+  },
+  beforeCreate (){
+   
   }
+
 }
 
 </script>

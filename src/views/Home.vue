@@ -37,7 +37,6 @@ export default {
         data = data.data
         if(data.ret){
           this.icons = data.applicationset
-          console.log(this.icons)
         }
     }
   },

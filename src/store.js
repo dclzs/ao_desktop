@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    screenHeight:0,
+    screenWidth:0
   },
   mutations: {
 
