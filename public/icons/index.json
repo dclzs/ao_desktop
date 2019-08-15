@@ -2,30 +2,39 @@
     "ret":true,
     "applicationset":[{
         "id": "0001",
+        "name":"Chess",
         "imgUrl": "/images/icons/chess-icon.jpg"
       }, {
         "id": "0002",
+        "name":"Chess",
         "imgUrl": "/images/icons/img2.png"
       }, {
         "id": "0003",
+        "name":"Chess",
         "imgUrl": "/images/icons/img3.png"
       },{
         "id": "0004",
+        "name":"Chess",
         "imgUrl": "/images/icons/img4.png"
       }, {
         "id": "0005",
+        "name":"Chess",
         "imgUrl": "/images/icons/img5.png"
       }, {
         "id": "0006",
+        "name":"Chess",
         "imgUrl": "/images/icons/img6.png"
       },{
         "id": "0007",
+        "name":"Chess",
         "imgUrl": "/images/icons/img1.png"
       }, {
         "id": "0008",
+        "name":"Chess",
         "imgUrl": "/images/icons/img2.png"
       }, {
         "id": "0009",
+        "name":"Chess",
         "imgUrl": "/images/icons/img3.png"
       } ]
 }

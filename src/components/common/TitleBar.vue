@@ -45,20 +45,17 @@ export default {
 			windowPosition(left,top){
 				this.$parent.$el.style.left=left+'px'
 				this.$parent.$el.style.top=top+'px'
-			} ,
-			windowSize(w,h){
-				this.$parent.$el.style.width=  w +'px'
-			 	this.$parent.$el.style.height= h + 'px'
-			},
+			}  ,
 			windowChangeSize(){
-						
 				this.isMax = !this.isMax
 				if(this.isMax){
 						this.windowPosition(0,0)
-						this.windowSize(this.$store.state.screenWidth,this.$store.state.screenHeight)
+						this.$parent.$el.style.width=  '100%'
+			 			this.$parent.$el.style.height= '100%'
 				}else{
 						this.windowPosition(this.parentLeft,this.parentTop)
-						this.windowSize(this.parentWidth,this.parentHeight)
+						this.$parent.$el.style.width= this.parentWidth+ 'px'
+			 			this.$parent.$el.style.height= this.parentHeight+'px'
 				}
 			} ,
 			windowToMin(){
