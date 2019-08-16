@@ -1,5 +1,5 @@
 <template>
-  <div class="chess" >
+  <div class="chess" ref="chess">
     <title-bar :titleBarOptions='titleBarOptions' ></title-bar>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default  {
     TitleBar
   },
   beforeCreate (){
-   
+    
   }
 
 }

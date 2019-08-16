@@ -13,6 +13,7 @@
     </div>
 </template>
 <script>
+import { isUndefined } from 'util';
 export default {
 		name:"TitleBar",
 		props:{
@@ -20,20 +21,24 @@ export default {
 		},
 		data (){
 			return {
-				parentWidth:0,
-				parentHeight:0,
 				parentLeft:0,
 				parentTop:0,
 				parentHeight:0,
-				parentWidth:0
+				parentWidth:0,  //原始大小
+				parentEl:undefined,
+				isMove:false      //是否处于拖拽移动状态
 			}
 		},
 		mounted (){
-			this.parentLeft=this.$parent.$el.offsetLeft
-			this.parentTop=this.$parent.$el.offsetTop
-			this.parentWidth =this.$parent.$el.offsetWidth
-			this.parentHeight =this.$parent.$el.offsetHeight
+			this.parentEl= this.$parent.$el
+			this.parentLeft=	this.parentEl.offsetLeft
+			this.parentTop=	this.parentEl.offsetTop
+			this.parentWidth =	this.parentEl.offsetWidth
+			this.parentHeight =	this.parentEl.offsetHeight
 			this.$parent.$el.style.transition="width 0.2s , height 0.2s"
+			//向document注册移动 往里面塞一个数组 没有就创建 有就push 把这个父级对象丢进去 方便操作
+			//movestart在这个title组建开始 
+			//移动中 和移动 应该在 document里面 
 		},
 		data(){
 			return {
@@ -42,27 +47,30 @@ export default {
 			}
 		} ,
 		methods:{
+			windowStratMove(){},
+			windowEndMove(){},
+			windowMoveing(){},
 			windowPosition(left,top){
-				this.$parent.$el.style.left=left+'px'
-				this.$parent.$el.style.top=top+'px'
+					this.parentEl.style.left=left+'px'
+					this.parentEl.style.top=top+'px'
 			}  ,
 			windowChangeSize(){
 				this.isMax = !this.isMax
 				if(this.isMax){
 						this.windowPosition(0,0)
-						this.$parent.$el.style.width=  '100%'
-			 			this.$parent.$el.style.height= '100%'
+						this.parentEl.style.width=  '100%'
+			 				this.parentEl.style.height= '100%'
 				}else{
 						this.windowPosition(this.parentLeft,this.parentTop)
-						this.$parent.$el.style.width= this.parentWidth+ 'px'
-			 			this.$parent.$el.style.height= this.parentHeight+'px'
+						this.parentEl.style.width= this.parentWidth+ 'px'
+			 			this.parentEl.style.height= this.parentHeight+'px'
 				}
 			} ,
 			windowToMin(){
-				 this.$parent.$el.style.display="none"
+				 	this.parentEl.style.display="none"
 			},
 			windowClose(){
-				 this.$parent.$el.style.display="none"
+					this.parentEl.style.display="none"
 			}
 		},
 		computed:{
