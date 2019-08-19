@@ -8,7 +8,13 @@ import './assets/styles/reset.css'
 import './assets/styles/border.css'
 import './assets/styles/iconfont.css'
 import 'swiper/dist/css/swiper.css'
+ 
 
+import 'vx-easyui/dist/themes/default/easyui.css'
+import 'vx-easyui/dist/themes/icon.css'
+import 'vx-easyui/dist/themes/vue.css'
+import EasyUI from 'vx-easyui'
+Vue.use(EasyUI)
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
 

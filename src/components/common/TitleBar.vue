@@ -1,44 +1,36 @@
 <template>
-    <div class="title-bar" >
-      <div class="icon"><img :src="titleBarOptions.iconUrl"  /></div> <!-- icon -->
+    <div class="title-bar"   :id="titleBarOptions.id">
+      <div class="icon"><img  @mousedown.stop="" :src="titleBarOptions.iconUrl"  /></div> <!-- icon -->
 				<div class="menu-title">
 					<div class="menu" v-if="Object.keys(this.titleBarOptions.menu).length" ></div>   
 					<div class="title">{{titleBarOptions.title}}</div>
 				</div>
-			<div class="status" :style="{'min-width':statusWidth}" >
-				<div class="status-item" @click="windowToMin" v-if="getStatusButton.min"><div class="iconfont">&#xe625;</div></div>
-				<div class="status-item" @click="windowChangeSize" v-if="getStatusButton.max"><div class="iconfont" v-html="windowMaxIcon"></div></div>
-				<div class="status-item close-window" @click="windowClose" v-if="getStatusButton.closeBut"> <div class="iconfont">&#xe614;</div></div>
+			<div class="status" :style="{'min-width':statusWidth}" @mousedown.stop="" >
+				<div class="status-item"  @click.stop="windowToMin" v-if="getStatusButton.min"><div class="iconfont">&#xe625;</div></div>
+				<div class="status-item" @click.stop="windowChangeSize" v-if="getStatusButton.max"><div class="iconfont" v-html="windowMaxIcon"></div></div>
+				<div class="status-item close-window" @click.stop="windowClose" v-if="getStatusButton.closeBut"> <div class="iconfont">&#xe614;</div></div>
 			</div> <!-- status -->
     </div>
 </template>
 <script>
 import { isUndefined } from 'util';
+import { setTimeout } from 'timers';
 export default {
 		name:"TitleBar",
 		props:{
-			titleBarOptions:Object			 
+			titleBarOptions:Object,
+			parentAttr:Object
 		},
 		data (){
 			return {
-				parentLeft:0,
-				parentTop:0,
-				parentHeight:0,
-				parentWidth:0,  //原始大小
-				parentEl:undefined,
-				isMove:false      //是否处于拖拽移动状态
+				parentEl:undefined
 			}
 		},
 		mounted (){
 			this.parentEl= this.$parent.$el
-			this.parentLeft=	this.parentEl.offsetLeft
-			this.parentTop=	this.parentEl.offsetTop
-			this.parentWidth =	this.parentEl.offsetWidth
-			this.parentHeight =	this.parentEl.offsetHeight
-			this.$parent.$el.style.transition="width 0.2s , height 0.2s"
-			//向document注册移动 往里面塞一个数组 没有就创建 有就push 把这个父级对象丢进去 方便操作
-			//movestart在这个title组建开始 
-			//移动中 和移动 应该在 document里面 
+		},
+		watch:{
+			 
 		},
 		data(){
 			return {
@@ -47,9 +39,6 @@ export default {
 			}
 		} ,
 		methods:{
-			windowStratMove(){},
-			windowEndMove(){},
-			windowMoveing(){},
 			windowPosition(left,top){
 					this.parentEl.style.left=left+'px'
 					this.parentEl.style.top=top+'px'
@@ -59,12 +48,16 @@ export default {
 				if(this.isMax){
 						this.windowPosition(0,0)
 						this.parentEl.style.width=  '100%'
-			 				this.parentEl.style.height= '100%'
+			 			this.parentEl.style.height= '100%'
 				}else{
-						this.windowPosition(this.parentLeft,this.parentTop)
-						this.parentEl.style.width= this.parentWidth+ 'px'
-			 			this.parentEl.style.height= this.parentHeight+'px'
+						this.windowPosition(this.parentAttr.left,this.parentAttr.top)
+						this.parentEl.style.width= this.parentAttr.width+ 'px'
+			 			this.parentEl.style.height= this.parentAttr.height+'px'
 				}
+				this.$parent.$el.style.transition="width 0.2s , height 0.2s"
+				setTimeout(()=>{
+					this.$parent.$el.style.transition=""
+				},250)
 			} ,
 			windowToMin(){
 				 	this.parentEl.style.display="none"
@@ -102,10 +95,12 @@ export default {
 		display:  flex
 		min-width:.8rem
 		img
+			cursor:default
 			width:.5rem
 			padding:.1rem
 			center()
 	.status
+		cursor:default
 		min-width:3rem
 		display:flex
 		.status-item:hover
