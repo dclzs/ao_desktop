@@ -1,5 +1,5 @@
 <template>
-  <div class="chess"   v-Resizable="{minWidth:300,minHeight:200}" v-Draggable="{handle:'#chess',drag:onDrag}" ref="chess">
+  <div class="chess"    v-Draggable="{handle:'#chess',drag:onDrag}" ref="chess">
     <title-bar   :parentAttr="windowAttr" :titleBarOptions='titleBarOptions' ></title-bar>
   </div>
 </template>

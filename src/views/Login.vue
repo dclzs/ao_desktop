@@ -23,7 +23,13 @@ export default {
   },
   methods:{
     login(){
-        //请求后台· 
+        //请求后台·  server
+        axios.post("/server/account/login",{
+          "account": this.username,
+        	"passwd":this.password
+        }).then((data)=>{
+            console.log(data)
+        })
     }
   }
 }

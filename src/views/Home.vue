@@ -1,5 +1,5 @@
 <template>
-   <div class="desktop-container" @contextmenu.prevent="showmenu">
+   <div ref='disktop' class="desktop-container" @contextmenu.prevent="showmenu($event)" @click.stop="leftClick">
      <task-bar></task-bar>
      <date-time></date-time>
      <application-set :icons="icons"></application-set>
@@ -31,8 +31,16 @@ export default {
   }
   ,
   methods:{
-    showmenu(){
-      alert("显示右键菜单组件");
+    showmenu(e){
+      if(e.toElement == this.$refs.disktop){
+          alert("弹出菜单")
+          //获取 其位置 
+           //展现菜单 默认向右显示 
+           //右边不能拿显示则向左显示
+           //向vuex放一个标志代表菜单展开 
+      }
+    },
+    leftClick(){
     },
     init(data){
         data = data.data
